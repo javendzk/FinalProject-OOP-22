@@ -30,21 +30,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (movement.magnitude > 0)
         {
-            float angle = 0;
-            if (moveX > 0)
+            spriteRenderer.flipX = moveX < 0;
+            float angle;
+
+            if (moveX != 0)
             {
-                spriteRenderer.flipX = false;
-                angle = moveY > 0 ? 45 : (moveY < 0 ? -45 : 0);
-            }
-            else if (moveX < 0)
-            {
-                spriteRenderer.flipX = true;
-                angle = moveY > 0 ? -45 : (moveY < 0 ? 45 : 0);
+                angle = moveY > 0 ? (spriteRenderer.flipX ? -45 : 45) : (moveY < 0 ? (spriteRenderer.flipX ? 45 : -45) : 0);
             }
             else
             {
-                angle = moveY > 0 ? 90 : (moveY < 0 ? -90 : 0);
+                angle = moveY > 0 ? (spriteRenderer.flipX ? -90 : 90) : (moveY < 0 ? (spriteRenderer.flipX ? 90 : -90) : 0);
             }
+
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         else
