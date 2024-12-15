@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae7151289c340ce418706e2865fbb6e8
+guid: b9a3e5864617a944f86da8a0f1e15b58
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: fish_npc4_1
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 154
+        width: 25
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad563df47c891342bb88551a959dfb9
+      internalID: 1397020900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fish_npc4_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 122
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c4d9ee66f562446a22e15f6051321c
+      internalID: -471866524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fish_npc4_0
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 186
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 563f5788da44b5c45bd0f6fa438ff2e4
+      internalID: -759515231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +169,33 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fish_npc4_0: -759515231
+      fish_npc4_1: 1397020900
+      fish_npc4_10: 1309555083
+      fish_npc4_11: 1451743982
+      fish_npc4_12: -405768610
+      fish_npc4_13: -1546739239
+      fish_npc4_14: 1097940505
+      fish_npc4_15: -802270731
+      fish_npc4_17: 498279625
+      fish_npc4_18: 83283469
+      fish_npc4_19: -1756251890
+      fish_npc4_2: -471866524
+      fish_npc4_20: 811127794
+      fish_npc4_21: -5078768
+      fish_npc4_22: 611603521
+      fish_npc4_23: -1386967458
+      fish_npc4_24: -885308523
+      fish_npc4_25: -1335694705
+      fish_npc4_26: 1837560524
+      fish_npc4_27: 1598067189
+      fish_npc4_3: 368753889
+      fish_npc4_4: -1190145146
+      fish_npc4_5: -741792052
+      fish_npc4_6: 1743898704
+      fish_npc4_7: -341977986
+      fish_npc4_9: -135228521
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
