@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        animator = GetComponent<Animator>();
+        animator = transform.Find("PlayerVisual").GetComponent<Animator>();
     }
 
     void Update()

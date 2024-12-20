@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Transform playerVisual;
     public bool isSwimming = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerVisual = transform.Find("PlayerVisual");
+        spriteRenderer = playerVisual.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,11 +44,11 @@ public class PlayerMovement : MonoBehaviour
                 angle = moveY > 0 ? (spriteRenderer.flipX ? -90 : 90) : (moveY < 0 ? (spriteRenderer.flipX ? 90 : -90) : 0);
             }
 
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            playerVisual.rotation = Quaternion.Euler(0, 0, angle);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            playerVisual.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         isSwimming = movement.magnitude > 0;
