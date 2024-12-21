@@ -69,4 +69,27 @@ public class FriendlyFishMovement : MonoBehaviour
         }
         transform.localScale = localScale;
     }
+
+    public void ShrinkAndMoveTowardsPlayer()
+    {
+        StopCoroutine(RandomMovement());
+        StartCoroutine(MoveTowardsPlayerAndShrink());
+    }
+
+    IEnumerator MoveTowardsPlayerAndShrink()
+    {
+        float shrinkDuration = 0.5f;
+        float elapsedTime = 0f;
+        Vector3 initialScale = transform.localScale;
+
+        while (elapsedTime < shrinkDuration)
+        {
+            transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, elapsedTime / shrinkDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = Vector3.zero;
+        Destroy(gameObject);
+    }
 }

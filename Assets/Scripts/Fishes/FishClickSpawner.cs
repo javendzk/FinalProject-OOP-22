@@ -23,7 +23,7 @@ public class FishClickSpawner : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             SpawnFish();
         }
