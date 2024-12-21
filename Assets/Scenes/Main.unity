@@ -2544,14 +2544,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4155737841750852549, guid: 79b789cf08f4ae747bb8e336c4c02964, type: 3}
+      propertyPath: playerGunPrefab
+      value: 
+      objectReference: {fileID: 4638195839038628161, guid: b5044ae079069d64f8e835cfe5763a74, type: 3}
     - target: {fileID: 6622365930947800051, guid: 79b789cf08f4ae747bb8e336c4c02964, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9177750907905039567, guid: 79b789cf08f4ae747bb8e336c4c02964, type: 3}
-      propertyPath: scorePopupPrefab
-      value: 
-      objectReference: {fileID: 6688478775980557799, guid: edee5d2e905f87349a1ed38e7300792f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

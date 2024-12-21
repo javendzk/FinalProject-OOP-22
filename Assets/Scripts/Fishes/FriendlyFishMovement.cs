@@ -12,11 +12,13 @@ public class FriendlyFishMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private bool isFleeing = false;
+    private BoxCollider2D boxCollider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        boxCollider = GetComponent<BoxCollider2D>();
         StartCoroutine(RandomMovement());
     }
 
@@ -72,6 +74,7 @@ public class FriendlyFishMovement : MonoBehaviour
 
     public void ShrinkAndMoveTowardsPlayer()
     {
+        boxCollider.enabled = false;
         StopCoroutine(RandomMovement());
         StartCoroutine(MoveTowardsPlayerAndShrink());
     }

@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 124673947436738650}
   - component: {fileID: 358816181210592567}
+  - component: {fileID: 5411563611668625074}
   - component: {fileID: 4190113872386723323}
   - component: {fileID: 3931455029893128174}
   - component: {fileID: 1382436291639562800}
   m_Layer: 0
   m_Name: FishEnemyBlue
-  m_TagString: Untagged
+  m_TagString: FishEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2398480725448723080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10.92, y: -7.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,6 +88,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5411563611668625074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398480725448723080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb79ba1ebd13664fb92b1afa8ac857d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowSpeed: 1
+  fastSpeed: 3.5
+  detectionRange: 10
+  guardRange: 8
+  returnDuration: 2
+  player: {fileID: 0}
 --- !u!95 &4190113872386723323
 Animator:
   serializedVersion: 5

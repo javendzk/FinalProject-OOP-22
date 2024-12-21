@@ -1,17 +1,14 @@
 using UnityEngine;
 
-public class PlayerCursor : MonoBehaviour
+public class PlayerFisher : PlayerItem
 {
-    public Material CursorDefaultMaterial;
-    public Material CursorGreenMaterial;
-    public GameObject scorePopupPrefab;
-    private bool isEnabled = true;
-    private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider;
+    [SerializeField] private Material CursorDefaultMaterial;
+    [SerializeField] private Material CursorGreenMaterial;
+    [SerializeField] private GameObject scorePopupPrefab;
     private bool isCollidingWithFishFriendly = false;
     private GameObject collidingFishFriendly;
 
-    void Start()
+    protected override void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = true;
@@ -21,19 +18,27 @@ public class PlayerCursor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            isEnabled = !isEnabled;
-            spriteRenderer.enabled = isEnabled;
-            boxCollider.enabled = isEnabled;
-        }
-
         if (isEnabled)
         {
             RotateTowardsMouse();
         }
 
         if (isCollidingWithFishFriendly && Input.GetMouseButtonDown(0))
+        {
+            UseItem();
+        }
+    }
+
+    public override void ToggleItem()
+    {
+        isEnabled = !isEnabled;
+        spriteRenderer.enabled = isEnabled;
+        boxCollider.enabled = isEnabled;
+    }
+
+    public override void UseItem()
+    {
+        if (collidingFishFriendly != null)
         {
             collidingFishFriendly.GetComponent<FriendlyFishMovement>().ShrinkAndMoveTowardsPlayer();
             ShowScorePopup();
@@ -53,7 +58,8 @@ public class PlayerCursor : MonoBehaviour
     {
         if (scorePopupPrefab != null && collidingFishFriendly != null)
         {
-            GameObject popup = Instantiate(scorePopupPrefab, collidingFishFriendly.transform.position, Quaternion.identity);
+            Instantiate(scorePopupPrefab, collidingFishFriendly.transform.position, Quaternion.identity);
+            collidingFishFriendly = null;
         }
     }
 
@@ -73,7 +79,6 @@ public class PlayerCursor : MonoBehaviour
         {
             spriteRenderer.material = CursorDefaultMaterial;
             isCollidingWithFishFriendly = false;
-            collidingFishFriendly = null;
         }
     }
 }
