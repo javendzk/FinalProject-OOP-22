@@ -2547,7 +2547,7 @@ PrefabInstance:
     - target: {fileID: 4155737841750852549, guid: 79b789cf08f4ae747bb8e336c4c02964, type: 3}
       propertyPath: playerGunPrefab
       value: 
-      objectReference: {fileID: 4638195839038628161, guid: b5044ae079069d64f8e835cfe5763a74, type: 3}
+      objectReference: {fileID: 4638195839038628161, guid: 6002d97fbe806554391d010b3803a61f, type: 3}
     - target: {fileID: 6622365930947800051, guid: 79b789cf08f4ae747bb8e336c4c02964, type: 3}
       propertyPath: m_Name
       value: Player

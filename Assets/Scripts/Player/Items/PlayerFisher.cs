@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerFisher : PlayerItem
 {
-    [SerializeField] private Material CursorDefaultMaterial;
-    [SerializeField] private Material CursorGreenMaterial;
+    [SerializeField] private Material FisherDefaultMaterial;
+    [SerializeField] private Material FisherGreenMaterial;
     [SerializeField] private GameObject scorePopupPrefab;
     private bool isCollidingWithFishFriendly = false;
     private GameObject collidingFishFriendly;
@@ -67,7 +67,7 @@ public class PlayerFisher : PlayerItem
     {
         if (other.CompareTag("FishFriendly"))
         {
-            spriteRenderer.material = CursorGreenMaterial;
+            spriteRenderer.material = FisherGreenMaterial;
             isCollidingWithFishFriendly = true;
             collidingFishFriendly = other.gameObject;
         }
@@ -77,7 +77,7 @@ public class PlayerFisher : PlayerItem
     {
         if (other.CompareTag("FishFriendly"))
         {
-            spriteRenderer.material = CursorDefaultMaterial;
+            spriteRenderer.material = FisherDefaultMaterial;
             isCollidingWithFishFriendly = false;
         }
     }
