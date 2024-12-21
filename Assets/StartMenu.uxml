@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="BOX" style="flex-grow: 1; padding-top: 0; background-image: resource(&apos;Fonts &amp; Materials/Bangers SDF&apos;);">
+        <ui:VisualElement name="Container" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
