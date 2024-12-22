@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 4438660404878787132}
   - component: {fileID: 5515728209610337203}
   - component: {fileID: 8245371629951818594}
+  - component: {fileID: 799425464625841894}
   - component: {fileID: 2146102588878340176}
   - component: {fileID: 6122017881554572364}
   m_Layer: 0
   m_Name: GunBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +101,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 20
+--- !u!114 &799425464625841894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7994832231769681101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3a60a60712fa74ca1ade8a4d3076e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 8245371629951818594}
+  damage: 10
 --- !u!61 &2146102588878340176
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,10 +144,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0010329001, y: 0.055776563}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -143,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.035218567, y: 0.14801113}
   m_EdgeRadius: 0
 --- !u!50 &6122017881554572364
 Rigidbody2D:

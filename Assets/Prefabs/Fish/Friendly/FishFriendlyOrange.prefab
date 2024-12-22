@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 937534844552125928}
   - component: {fileID: 1646332261006791502}
   - component: {fileID: 7267995365650735593}
+  - component: {fileID: 507253983603057087}
+  - component: {fileID: 1061626483084597343}
+  - component: {fileID: 1988768961127655552}
   - component: {fileID: 9181983816704414082}
   - component: {fileID: 6905743419322794138}
   - component: {fileID: 3940970359177449471}
@@ -109,6 +112,50 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &507253983603057087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089883503181236595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611f6758a843cb54d8f359e9d58c6b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkingCount: 2
+  blinkInterval: 0.05
+  blinkMaterial: {fileID: 2100000, guid: fd1208283ddb87446b43dfb68d1b3c48, type: 2}
+  playerVisual: {fileID: 0}
+  isInvincible: 0
+--- !u!114 &1061626483084597343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089883503181236595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e004467911042c46b0be014e0ddc4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+--- !u!114 &1988768961127655552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089883503181236595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f266e2fdc2ab14e498e2f7487d76307d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 1061626483084597343}
 --- !u!114 &9181983816704414082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +229,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -15,22 +15,31 @@ public class AttackComponent : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(gameObject.tag))
+        Transform highestParent = GetHighestParent(transform);
+        Transform otherHighestParent = GetHighestParent(other.transform);
+
+        if ((highestParent.CompareTag("FishFriendly") && otherHighestParent.CompareTag("FishFriendly")) ||
+            (highestParent.CompareTag("FishFriendly") && otherHighestParent.CompareTag("FishEnemy")) ||
+            (highestParent.CompareTag("FishEnemy") && otherHighestParent.CompareTag("FishFriendly")) ||
+            (highestParent.CompareTag("FishEnemy") && otherHighestParent.CompareTag("FishEnemy")))
         {
             return;
         }
 
-        Transform highestParent = transform;
-        while (highestParent.parent != null)
-        {
-            highestParent = highestParent.parent;
-            if ((highestParent.CompareTag(other.tag)) && 
-                (highestParent.CompareTag("Player") || highestParent.CompareTag("FishEnemy")))
-            {
-                return;
-            }
-        }
+        DealDamage(other);
+    }
 
+    private Transform GetHighestParent(Transform obj)
+    {
+        while (obj.parent != null)
+        {
+            obj = obj.parent;
+        }
+        return obj;
+    }
+
+    private void DealDamage(Collider2D other)
+    {
         InvincibilityComponent invincibility = other.GetComponent<InvincibilityComponent>();
         if (invincibility != null)
         {

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FishFriendly
   - FishEnemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

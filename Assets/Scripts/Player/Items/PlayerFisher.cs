@@ -7,6 +7,7 @@ public class PlayerFisher : PlayerItem
     [SerializeField] private GameObject scorePopupPrefab;
     private bool isCollidingWithFishFriendly = false;
     private GameObject collidingFishFriendly;
+    private Player player;
 
     protected override void Start()
     {
@@ -14,6 +15,7 @@ public class PlayerFisher : PlayerItem
         spriteRenderer.enabled = true;
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = true;
+        player = GetComponentInParent<Player>();
     }
 
     void Update()
@@ -42,6 +44,7 @@ public class PlayerFisher : PlayerItem
         {
             collidingFishFriendly.GetComponent<FriendlyFishMovement>().ShrinkAndMoveTowardsPlayer();
             ShowScorePopup();
+            player.IncrementFishCount();
         }
     }
 
