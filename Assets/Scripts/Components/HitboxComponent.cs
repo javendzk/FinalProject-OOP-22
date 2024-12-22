@@ -25,5 +25,4 @@ public class HitboxComponent : MonoBehaviour
             health.Subtract(attackComponent.damage);
         }
     }
-
 }
