@@ -777,7 +777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160.23}
+  m_AnchoredPosition: {x: 0, y: -115}
   m_SizeDelta: {x: 776.1129, y: 402.2346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852085935
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The waves will carry you back home
+  m_text: You lost all of your fish. The waves will carry you back home
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f6cfeadb649cec48a7be5b193d67372, type: 2}
   m_sharedMaterial: {fileID: -6953792402592128414, guid: 0f6cfeadb649cec48a7be5b193d67372, type: 2}
