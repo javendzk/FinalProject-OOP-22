@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Fish catched:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Text" style="height: 443px; visibility: visible; -unity-text-align: middle-center; white-space: nowrap; -unity-font: resource(&apos;Fonts &amp; Materials/PressStart2P-Regular&apos;); font-size: 32px;" />
+    </ui:VisualElement>
+</ui:UXML>
