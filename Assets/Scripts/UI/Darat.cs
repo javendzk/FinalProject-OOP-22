@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -22,6 +23,13 @@ public class Darat : MonoBehaviour
         diveButton.gameObject.SetActive(true);
     }
 
+    void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            GameManager.Instance.LevelManager.LoadScene("Level1");
+        }
+    }
     public void Dive()
     {
         GameManager.Instance.LevelManager.LoadScene("Level1");
