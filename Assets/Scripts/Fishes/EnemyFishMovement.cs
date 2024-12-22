@@ -88,8 +88,13 @@ public class EnemyFishMovement : MonoBehaviour
         currentState = State.Returning;
         Vector2 direction = (initialPosition - (Vector2)transform.position).normalized;
 
-        rb.velocity = direction * slowSpeed; // Change to slowSpeed
+        rb.velocity = direction * slowSpeed; 
         yield return new WaitForSeconds(returnDuration);
+
+        if (this == null)
+        {
+            yield break;
+        }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer < detectionRange)

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform playerVisual;
     public bool isSwimming = false;
     private Player player;
+    private float minX, maxX;
 
     void Start()
     {
@@ -17,6 +18,13 @@ public class PlayerMovement : MonoBehaviour
         playerVisual = transform.Find("PlayerVisual");
         spriteRenderer = playerVisual.GetComponent<SpriteRenderer>();
         player = GetComponent<Player>();
+
+        // Get camera boundaries
+        RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        Vector3[] canvasCorners = new Vector3[4];
+        canvasRect.GetWorldCorners(canvasCorners);
+        minX = canvasCorners[0].x;
+        maxX = canvasCorners[2].x;
     }
 
     void Update()
@@ -31,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(moveX, moveY).normalized;
         rb.velocity = movement * player.GetMoveSpeed();
+
+        // Restrict player movement within camera boundaries (only X-axis)
+        Vector3 newPos = transform.position + (Vector3)rb.velocity * Time.deltaTime;
+        newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
+        transform.position = newPos;
 
         if (movement.magnitude > 0)
         {
