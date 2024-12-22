@@ -36,12 +36,15 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        Vector3 newPos = new Vector3(target.position.x, target.position.y + yOffset, -10f);
+        if (target != null)
+        {
+            Vector3 newPos = new Vector3(target.position.x, target.position.y + yOffset, -10f);
 
-        // Batasi posisi kamera berdasarkan batas-batas canvas dan ukuran kamera
-        newPos.x = Mathf.Clamp(newPos.x, minX + camHalfWidth, maxX - camHalfWidth);
-        newPos.y = Mathf.Clamp(newPos.y, minY + camHalfHeight, maxY - camHalfHeight);
+            // Batasi posisi kamera berdasarkan batas-batas canvas dan ukuran kamera
+            newPos.x = Mathf.Clamp(newPos.x, minX + camHalfWidth, maxX - camHalfWidth);
+            newPos.y = Mathf.Clamp(newPos.y, minY + camHalfHeight, maxY - camHalfHeight);
 
-        transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+        }
     }
 }

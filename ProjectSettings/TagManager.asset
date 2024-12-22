@@ -7,6 +7,11 @@ TagManager:
   - FishFriendly
   - FishEnemy
   - Bullet
+<<<<<<< HEAD
+  - SceneCamera
+=======
+  - GameManager
+>>>>>>> 2bb9ac486ae0aa8a8b8466fedbc7edcddac1ced2
   layers:
   - Default
   - TransparentFX
