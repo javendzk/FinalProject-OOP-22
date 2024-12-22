@@ -284,7 +284,7 @@ MonoBehaviour:
   oxygenMultiplier: 1
   moveSpeedMultiplier: 1
   baseMoveSpeed: 3
-  baseTank: 150
+  baseTank: 300
   baseBulletDamage: 10
   boughtGun: 1
 --- !u!114 &735627292506129499

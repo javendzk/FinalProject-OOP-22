@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class PlayerFisher : PlayerItem
 {
-    public FishCounter fishCounter;
     [SerializeField] private Material FisherDefaultMaterial;
     [SerializeField] private Material FisherGreenMaterial;
     [SerializeField] private GameObject scorePopupPrefab;
     private bool isCollidingWithFishFriendly = false;
     private GameObject collidingFishFriendly;
-    private Player player;
+    public Player player;
 
     protected override void Start()
     {
@@ -16,7 +15,7 @@ public class PlayerFisher : PlayerItem
         spriteRenderer.enabled = true;
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = true;
-        player = GetComponentInParent<Player>();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -45,7 +44,7 @@ public class PlayerFisher : PlayerItem
         {
             collidingFishFriendly.GetComponent<FriendlyFishMovement>().ShrinkAndMoveTowardsPlayer();
             ShowScorePopup();
-            fishCounter.AddFish(1);
+            player.IncrementFishCount();
         }
     }
 

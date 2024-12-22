@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float baseTank = 150f;
     [SerializeField] private float baseBulletDamage = 10f;
     [SerializeField] public bool boughtGun;
+
+    public event Action<int> OnFishCountChanged;
 
     void Start()
     {
@@ -108,6 +110,7 @@ public class Player : MonoBehaviour
     public void SetFishCount(int count)
     {
         fishCount = count;
+        OnFishCountChanged?.Invoke(fishCount);
     }
 
     public int GetMoneyCount()
@@ -123,6 +126,7 @@ public class Player : MonoBehaviour
     public void IncrementFishCount()
     {
         fishCount++;
+        
     }
 
     private void Die()

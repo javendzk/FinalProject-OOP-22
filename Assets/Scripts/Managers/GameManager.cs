@@ -19,12 +19,7 @@ public class GameManager : MonoBehaviour
 
             LevelManager = GetComponentInChildren<LevelManager>();
 
-            mainCamera = GameObject.FindWithTag("MainCamera");
             player = GameObject.FindWithTag("Player");
-            if (mainCamera != null)
-            {
-                DontDestroyOnLoad(mainCamera);
-            }
 
             if (player != null)
             {
