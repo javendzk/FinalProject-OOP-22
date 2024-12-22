@@ -9,6 +9,7 @@ public class FishEnemySpawner : MonoBehaviour
     public float spawnDelayMin = 1f;
     public float spawnDelayMax = 3f;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
+    private bool isSpawning = false;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class FishEnemySpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnEnemy());
-    } 
+    }
 
     void SpawnEnemyImmediately()
     {
@@ -36,7 +37,6 @@ public class FishEnemySpawner : MonoBehaviour
 
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
-        newEnemy.transform.parent = transform;
         spawnedEnemies.Add(newEnemy);
     }
 
@@ -44,12 +44,14 @@ public class FishEnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (spawnedEnemies.Count < maxConcurrentEnemies)
+            if (!isSpawning && spawnedEnemies.Count < maxConcurrentEnemies)
             {
+                isSpawning = true;
                 SpawnEnemyImmediately();
+                yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+                isSpawning = false;
             }
-
-            yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+            yield return null;
         }
     }
 
@@ -62,11 +64,6 @@ public class FishEnemySpawner : MonoBehaviour
                 spawnedEnemies.RemoveAt(i);
                 continue;
             }
-        }
-
-        if (spawnedEnemies.Count < maxConcurrentEnemies)
-        {
-            StartCoroutine(SpawnEnemy());
         }
     }
 }

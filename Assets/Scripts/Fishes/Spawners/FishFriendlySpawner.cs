@@ -13,6 +13,7 @@ public class FishFriendlySpawner : MonoBehaviour
     private Transform player;
     private float minX, maxX, minY, maxY;
     private float camHalfHeight, camHalfWidth;
+    private bool isSpawning = false;
 
     void Start()
     {
@@ -64,12 +65,14 @@ public class FishFriendlySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (spawnedFish.Count < maxConcurrentFish)
+            if (!isSpawning && spawnedFish.Count < maxConcurrentFish)
             {
+                isSpawning = true;
                 SpawnFishImmediately();
+                yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+                isSpawning = false;
             }
-
-            yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+            yield return null;
         }
     }
 
@@ -89,11 +92,6 @@ public class FishFriendlySpawner : MonoBehaviour
                 Destroy(spawnedFish[i]);
                 spawnedFish.RemoveAt(i);
             }
-        }
-
-        if (spawnedFish.Count < maxConcurrentFish)
-        {
-            StartCoroutine(SpawnFish());
         }
     }
 }
