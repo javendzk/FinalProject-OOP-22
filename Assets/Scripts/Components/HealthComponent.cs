@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    public int maxHealth;
-    private int health;
+    public HealthBar healthBar;
+    public float maxHealth = 100f;
+    public float currentHealth;
 
     void Start()
     {
-        health = maxHealth;
+        if (healthBar == null)
+        {
+            GameObject healthBarObject = GameObject.Find("HealthBar");
+            if (healthBarObject != null)
+            {
+                healthBar = healthBarObject.GetComponent<HealthBar>();
+            }
+        }
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
-    public int Health
+    public void Subtract(float amount)
     {
-        get { return health; }
-    }
-
-    public void Subtract(int amount)
-    {
-        health -= amount;
-        if (health <= 0)
+        currentHealth -= amount;
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
+        healthBar.SetHealth(currentHealth);
     }
 
-    void Update()
+    public void UpdateHealth()
     {
-        
+        healthBar.SetHealth(currentHealth);
     }
 }

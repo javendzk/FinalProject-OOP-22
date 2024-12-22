@@ -7,22 +7,34 @@ public class FishCounter : MonoBehaviour
 {
     public int fishCount;
     public Text totalFishText;
-    // Start is called before the first frame update
+    private Player player;
+
     void Start()
     {
-        fishCount = 0; //start = 0 fish
-        totalFishText.text = fishCount.ToString();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player != null)
+        {
+            fishCount = player.GetFishCount();
+            totalFishText.text = fishCount.ToString();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (player != null)
+        {
+            fishCount = player.GetFishCount();
+            totalFishText.text = fishCount.ToString();
+        }
     }
 
     public void AddFish(int fish)
     {
-        fishCount += fish;
-        totalFishText.text = fishCount.ToString();
+        if (player != null)
+        {
+            player.SetFishCount(player.GetFishCount() + fish);
+            fishCount = player.GetFishCount();
+            totalFishText.text = fishCount.ToString();
+        }
     }
 }
