@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerFisher : PlayerItem
 {
+    public FishCounter fishCounter;
     [SerializeField] private Material FisherDefaultMaterial;
     [SerializeField] private Material FisherGreenMaterial;
     [SerializeField] private GameObject scorePopupPrefab;
@@ -44,7 +45,7 @@ public class PlayerFisher : PlayerItem
         {
             collidingFishFriendly.GetComponent<FriendlyFishMovement>().ShrinkAndMoveTowardsPlayer();
             ShowScorePopup();
-            player.IncrementFishCount();
+            fishCounter.AddFish(1);
         }
     }
 
