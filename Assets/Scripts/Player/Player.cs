@@ -111,4 +111,9 @@ public class Player : MonoBehaviour
     {
         moneyCount = count;
     }
+
+    public void IncrementFishCount()
+    {
+        fishCount++;
+    }
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class GunBullet : MonoBehaviour
 {
     [Header("Bullet Stats")]
-    public float bulletSpeed = 20f;
+    public float bulletSpeed = 35f;
     private Rigidbody2D rb;
-    private float maxAge = 3f;
+    private float maxAge = 2f;
+    private float damage;
 
     void Awake()
     {
@@ -17,6 +18,11 @@ public class GunBullet : MonoBehaviour
             rb.velocity = transform.up * bulletSpeed;
         }
         Destroy(gameObject, maxAge);
+    }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
     }
 
     void OnTriggerEnter2D(Collider2D other)

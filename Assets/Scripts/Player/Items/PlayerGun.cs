@@ -7,7 +7,7 @@ public class PlayerGun : PlayerItem
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private Sprite greenSprite;
     private bool isReloading = false;
-    private float reloadTime = 2f;
+    private float reloadTime = 0.5f;
     private Transform bulletSpawnPoint;
     private Player player;
 
@@ -71,7 +71,7 @@ public class PlayerGun : PlayerItem
         if (bulletPrefab != null && bulletSpawnPoint != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            Bullet bulletComponent = bullet.GetComponent<Bullet>();
+            GunBullet bulletComponent = bullet.GetComponent<GunBullet>();
             if (bulletComponent != null)
             {
                 bulletComponent.SetDamage(player.GetBulletDamage());

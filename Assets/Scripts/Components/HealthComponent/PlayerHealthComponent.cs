@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthComponent : MonoBehaviour
+public class PlayerHealthComponent : HealthComponent
 {
     public HealthBar healthBar;
-    public float maxHealth = 100f;
-    public float currentHealth;
 
-    void Start()
+    public override void Start()
     {
         if (healthBar == null)
         {
@@ -23,17 +21,17 @@ public class HealthComponent : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void Subtract(float amount)
+    public override void Subtract(float amount)
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         healthBar.SetHealth(currentHealth);
     }
 
-    public void UpdateHealth()
+    public override void UpdateHealth()
     {
         healthBar.SetHealth(currentHealth);
     }

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FinalProject-OOP-22.sln"
+    "dotnet.defaultSolution": "El-Diver_TheGame.sln"
 }
