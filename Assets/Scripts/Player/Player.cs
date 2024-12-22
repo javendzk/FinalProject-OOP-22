@@ -30,12 +30,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        oxygenComponent.UpdateOxygen();
-        healthComponent.UpdateHealth();
-        if (healthComponent.currentHealth == 0 || oxygenComponent.currentOxygen == 0)
+        if (oxygenComponent != null || healthComponent != null)
         {
-            Die();
+            oxygenComponent.UpdateOxygen();
+            healthComponent.UpdateHealth();
+            if (healthComponent.currentHealth == 0 || oxygenComponent.currentOxygen == 0)
+            {
+                Die();
+            }
         }
+
     }
 
     void LateUpdate()
