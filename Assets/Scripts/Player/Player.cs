@@ -21,13 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] public bool boughtGun;
     private bool isDead = false;
 
-    void Start()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-        animator = transform.Find("PlayerVisual").GetComponent<Animator>();
-        healthComponent = GetComponent<HealthComponent>();
-        oxygenComponent = GetComponent<OxygenComponent>();
-    }
+
 
     void Update()
     {
@@ -133,5 +127,13 @@ public class Player : MonoBehaviour
         Debug.Log("Hello");
         fishCount = 0;
         GameManager.Instance.LevelManager.LoadScene("Dead");
+    }
+
+    public void init()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        animator = transform.Find("PlayerVisual").GetComponent<Animator>();
+        healthComponent = GetComponent<HealthComponent>();
+        oxygenComponent = GetComponent<OxygenComponent>();
     }
 }
