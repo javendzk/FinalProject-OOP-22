@@ -15,19 +15,23 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>(); // Dapatkan RectTransform dari canvas
+        GameObject canvasObject = GameObject.Find("Canvas");
+        if (canvasObject != null)
+        {
+            canvasRect = canvasObject.GetComponent<RectTransform>();
+            if (canvasRect != null)
+            {
+                Vector3[] canvasCorners = new Vector3[4];
+                canvasRect.GetWorldCorners(canvasCorners);
+                minX = canvasCorners[0].x;
+                maxX = canvasCorners[2].x;
+                minY = canvasCorners[0].y;
+                maxY = canvasCorners[2].y;
 
-        // Dapatkan batas-batas dari canvas
-        Vector3[] canvasCorners = new Vector3[4];
-        canvasRect.GetWorldCorners(canvasCorners);
-        minX = canvasCorners[0].x;
-        maxX = canvasCorners[2].x;
-        minY = canvasCorners[0].y;
-        maxY = canvasCorners[2].y;
-
-        // Dapatkan ukuran setengah dari kamera
-        camHalfHeight = Camera.main.orthographicSize;
-        camHalfWidth = camHalfHeight * Camera.main.aspect;
+                camHalfHeight = Camera.main.orthographicSize;
+                camHalfWidth = camHalfHeight * Camera.main.aspect;
+            }
+        }
     }
 
     void Update()

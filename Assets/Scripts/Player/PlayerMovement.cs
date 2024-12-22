@@ -20,11 +20,18 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Player>();
 
         // Get camera boundaries
-        RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        Vector3[] canvasCorners = new Vector3[4];
-        canvasRect.GetWorldCorners(canvasCorners);
-        minX = canvasCorners[0].x;
-        maxX = canvasCorners[2].x;
+        GameObject canvasObject = GameObject.Find("Canvas");
+        if (canvasObject != null)
+        {
+            RectTransform canvasRect = canvasObject.GetComponent<RectTransform>();
+            if (canvasRect != null)
+            {
+                Vector3[] canvasCorners = new Vector3[4];
+                canvasRect.GetWorldCorners(canvasCorners);
+                minX = canvasCorners[0].x;
+                maxX = canvasCorners[2].x;
+            }
+        }
     }
 
     void Update()
