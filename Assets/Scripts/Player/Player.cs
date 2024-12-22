@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float baseTank = 150f;
     [SerializeField] private float baseBulletDamage = 10f;
     [SerializeField] public bool boughtGun;
+    private bool isDead = false;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (oxygenComponent != null || healthComponent != null)
+        if (oxygenComponent != null && healthComponent != null)
         {
             oxygenComponent.UpdateOxygen();
             healthComponent.UpdateHealth();
@@ -127,6 +128,9 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+        isDead = true;
+        Debug.Log("Hello");
         fishCount = 0;
         GameManager.Instance.LevelManager.LoadScene("Dead");
     }

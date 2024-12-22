@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] Animator animator;
-
+    private bool isLoadingScene = false;
 
     void Awake()
     {
@@ -15,7 +15,11 @@ public class LevelManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(LoadSceneAsync(sceneName));
+        if (!isLoadingScene)
+        {
+            isLoadingScene = true;
+            StartCoroutine(LoadSceneAsync(sceneName));
+        }
     }
 
     private IEnumerator LoadSceneAsync(string sceneName)
@@ -35,7 +39,7 @@ public class LevelManager : MonoBehaviour
         if (asyncLoad.isDone)
         {
             animator.SetTrigger("End");
-
+            isLoadingScene = false;
         }
     }
 }
