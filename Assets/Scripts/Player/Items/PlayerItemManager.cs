@@ -9,6 +9,7 @@ public class PlayerItemManager : MonoBehaviour
     private PlayerItem playerFisher;
     private PlayerItem playerGun;
     private PlayerItem currentItem;
+    private Player player;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class PlayerItemManager : MonoBehaviour
 
         currentItem = playerFisher;
         currentItem.gameObject.SetActive(true);
+
+        player = GetComponentInParent<Player>();
     }
 
     void Update()
@@ -49,7 +52,14 @@ public class PlayerItemManager : MonoBehaviour
 
         if (currentItem == playerFisher)
         {
-            currentItem = playerGun;
+            if (player.boughtGun)
+            {
+                currentItem = playerGun;
+            }
+            else
+            {
+                currentItem = playerFisher;
+            }
         }
         else
         {

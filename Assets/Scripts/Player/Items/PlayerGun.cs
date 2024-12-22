@@ -9,6 +9,7 @@ public class PlayerGun : PlayerItem
     private bool isReloading = false;
     private float reloadTime = 2f;
     private Transform bulletSpawnPoint;
+    private Player player;
 
     protected override void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerGun : PlayerItem
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = defaultSprite;
         bulletSpawnPoint = transform.Find("BulletSpawnPoint");
+        player = GetComponentInParent<Player>();
     }
 
     void Update()
@@ -69,6 +71,11 @@ public class PlayerGun : PlayerItem
         if (bulletPrefab != null && bulletSpawnPoint != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            Bullet bulletComponent = bullet.GetComponent<Bullet>();
+            if (bulletComponent != null)
+            {
+                bulletComponent.SetDamage(player.GetBulletDamage());
+            }
         }
     }
 

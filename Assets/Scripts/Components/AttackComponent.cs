@@ -51,9 +51,4 @@ public class AttackComponent : MonoBehaviour
             }
         }
     }
-
-    void Update()
-    {
-        // ...existing code...
-    }
 }

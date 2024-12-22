@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int fishCount;
     [SerializeField] private int moneyCount;
-    [SerializeField] private float oxygenMultiplier;
-    [SerializeField] private float moveSpeedMultiplier;
-    [SerializeField] private float baseMoveSpeed;
-    [SerializeField] private float baseTank;
-    [SerializeField] private float baseBulletDamage;
+    [SerializeField] private float oxygenMultiplier = 1f;
+    [SerializeField] private float moveSpeedMultiplier = 1f;
+    [SerializeField] private float baseMoveSpeed = 5f;
+    [SerializeField] private float baseTank = 150f;
+    [SerializeField] private float baseBulletDamage = 10f;
     [SerializeField] public bool boughtGun;
 
     void Start()

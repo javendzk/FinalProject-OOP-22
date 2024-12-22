@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 [RequireComponent(typeof(BoxCollider2D))]
 public class HitboxComponent : MonoBehaviour
 {
@@ -21,7 +19,11 @@ public class HitboxComponent : MonoBehaviour
 
     public void Damage(GunBullet bullet)
     {
-        health.Subtract(bullet.damage);
+        AttackComponent attackComponent = bullet.GetComponent<AttackComponent>();
+        if (attackComponent != null)
+        {
+            health.Subtract(attackComponent.damage);
+        }
     }
 
 }
