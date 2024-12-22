@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-    private Animator animator; 
+    private Animator animator;
 
     private HealthComponent healthComponent;
     private OxygenComponent oxygenComponent;
@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     {
         oxygenComponent.UpdateOxygen();
         healthComponent.UpdateHealth();
+        if (healthComponent.currentHealth == 0)
+        {
+
+        }
     }
 
     void LateUpdate()
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("FishEnemy")) 
+        if (other.CompareTag("FishEnemy"))
         {
             Debug.Log("Player collided with enemy fish.");
             EnemyFishMovement enemyFish = other.GetComponent<EnemyFishMovement>();
@@ -110,5 +114,10 @@ public class Player : MonoBehaviour
     public void SetMoneyCount(int count)
     {
         moneyCount = count;
+    }
+
+    private void Die()
+    {
+
     }
 }
