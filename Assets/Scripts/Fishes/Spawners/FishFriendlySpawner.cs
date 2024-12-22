@@ -8,6 +8,7 @@ public class FishFriendlySpawner : MonoBehaviour
     public int maxConcurrentFish = 15;
     public float spawnDelayMin = 1f;
     public float spawnDelayMax = 3f;
+    public float fishLifespan = 60f;
     public float despawnDistance = 20f;
     private List<GameObject> spawnedFish = new List<GameObject>();
     private Transform player;
@@ -16,60 +17,74 @@ public class FishFriendlySpawner : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        StartCoroutine(FindPlayer());
         RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
         Vector3[] canvasCorners = new Vector3[4];
         canvasRect.GetWorldCorners(canvasCorners);
         minX = canvasCorners[0].x;
         maxX = canvasCorners[2].x;
-        minY = canvasCorners[0].y;
-        maxY = canvasCorners[2].y;
+        minY = canvasCorners[0].y + 5f; 
+        maxY = canvasCorners[2].y - 5f; 
 
         camHalfHeight = Camera.main.orthographicSize;
         camHalfWidth = camHalfHeight * Camera.main.aspect;
 
-        for (int i = 0; i < maxConcurrentFish; i++)
-        {
-            SpawnFishImmediately();
-        }
-
-        StartCoroutine(SpawnFish());
+        StartCoroutine(SpawnFishRoutine());
     }
 
-    void SpawnFishImmediately()
+    IEnumerator FindPlayer()
     {
-        Vector3 spawnPosition;
-        bool validPosition = false;
-
-        do
+        while (player == null)
         {
-            float spawnX = Random.Range(minX + camHalfWidth * 2, maxX - camHalfWidth * 2);
-            float spawnY = Random.Range(minY + camHalfHeight * 4, maxY - camHalfHeight * 4);
-            spawnPosition = new Vector3(spawnX, spawnY, 0);
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            yield return new WaitForSeconds(1f);
+        }
 
-            Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.5f);
-            if (hitCollider == null)
-            {
-                validPosition = true;
-            }
-        } while (!validPosition);
+        for (int i = 0; i < maxConcurrentFish; i++)
+        {
+            SpawnFish();
+        }
+    }
+
+    void SpawnFish()
+    {
+        if (player == null) return;
+
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(player.position.x - 10f, player.position.x + 10f),
+            Random.Range(player.position.y - 10f, player.position.y + 10f),
+            0f
+        );
+
+        spawnPosition.x = Mathf.Clamp(spawnPosition.x, minX + camHalfWidth, maxX - camHalfWidth);
+        spawnPosition.y = Mathf.Clamp(spawnPosition.y, minY + 20, maxY - camHalfHeight);
 
         GameObject fishPrefab = fishPrefabs[Random.Range(0, fishPrefabs.Length)];
         GameObject newFish = Instantiate(fishPrefab, spawnPosition, Quaternion.identity, transform);
         spawnedFish.Add(newFish);
+        StartCoroutine(DestroyFishAfterLifespan(newFish));
     }
 
-    IEnumerator SpawnFish()
+    IEnumerator DestroyFishAfterLifespan(GameObject fish)
+    {
+        yield return new WaitForSeconds(fishLifespan);
+        if (fish != null)
+        {
+            spawnedFish.Remove(fish);
+            Destroy(fish);
+        }
+    }
+
+    IEnumerator SpawnFishRoutine()
     {
         while (true)
         {
             if (spawnedFish.Count < maxConcurrentFish)
             {
-                SpawnFishImmediately();
+                SpawnFish();
             }
 
-            yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+            yield return new WaitForSeconds(0.5f); // Flat delay of 0.5 seconds
         }
     }
 
@@ -88,12 +103,17 @@ public class FishFriendlySpawner : MonoBehaviour
             {
                 Destroy(spawnedFish[i]);
                 spawnedFish.RemoveAt(i);
+                StartCoroutine(RespawnFishWithCooldown());
             }
         }
+    }
 
+    IEnumerator RespawnFishWithCooldown()
+    {
+        yield return new WaitForSeconds(1f); // Respawn cooldown of 1 second
         if (spawnedFish.Count < maxConcurrentFish)
         {
-            StartCoroutine(SpawnFish());
+            SpawnFish();
         }
     }
 }

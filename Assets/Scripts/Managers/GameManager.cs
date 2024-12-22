@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public LevelManager LevelManager { get; private set; }
+
+    private GameObject mainCamera;
+    private GameObject player;
 
     private void Awake()
     {
@@ -13,18 +17,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // foreach (Transform child in transform)
-            // {
-            //     if (child.TryGetComponent(out Canvas canvas) || child.TryGetComponent(out Image image))
-            //     {
-            //         child.gameObject.SetActive(false);
-            //     }
-            // }
-
             LevelManager = GetComponentInChildren<LevelManager>();
 
-            var mainCamera = GameObject.FindWithTag("MainCamera");
-            var player = GameObject.FindWithTag("Player");
+            mainCamera = GameObject.FindWithTag("MainCamera");
+            player = GameObject.FindWithTag("Player");
             if (mainCamera != null)
             {
                 DontDestroyOnLoad(mainCamera);
@@ -34,10 +30,30 @@ public class GameManager : MonoBehaviour
             {
                 DontDestroyOnLoad(player);
             }
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "level1" || scene.name == "level2" || scene.name == "level3")
+        {
+            if (mainCamera != null)
+            {
+                mainCamera.SetActive(false);
+            }
+        }
+        else
+        {
+            if (mainCamera != null)
+            {
+                mainCamera.SetActive(true);
+            }
         }
     }
 }

@@ -53,4 +53,5 @@ MonoBehaviour:
   maxConcurrentFish: 10
   spawnDelayMin: 1
   spawnDelayMax: 1.5
+  fishLifespan: 60
   despawnDistance: 30

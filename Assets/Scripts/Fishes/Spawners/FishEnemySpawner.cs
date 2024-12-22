@@ -6,50 +6,43 @@ public class FishEnemySpawner : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     public int maxConcurrentEnemies = 5;
-    public float spawnDelayMin = 1f;
-    public float spawnDelayMax = 3f;
+    public float spawnDelay = 3f;
+    public float despawnDistance = 20f;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
+    private Transform player;
 
     void Start()
     {
-        for (int i = 0; i < 2; i++)
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        for (int i = 0; i < maxConcurrentEnemies; i++)
         {
-            SpawnEnemyImmediately();
+            SpawnEnemy();
         }
 
-        StartCoroutine(SpawnEnemy());
-    } 
+        StartCoroutine(SpawnEnemyRoutine());
+    }
 
-    void SpawnEnemyImmediately()
+    void SpawnEnemy()
     {
         Vector3 spawnPosition = transform.position;
-        bool validPosition = false;
-
-        do
-        {
-            Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.5f);
-            if (hitCollider == null)
-            {
-                validPosition = true;
-            }
-        } while (!validPosition);
 
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
-        newEnemy.transform.parent = transform;
+        newEnemy.transform.SetParent(transform); // Set the parent of the instantiated enemy to the spawner's transform
         spawnedEnemies.Add(newEnemy);
     }
 
-    IEnumerator SpawnEnemy()
+    IEnumerator SpawnEnemyRoutine()
     {
         while (true)
         {
             if (spawnedEnemies.Count < maxConcurrentEnemies)
             {
-                SpawnEnemyImmediately();
+                SpawnEnemy();
             }
 
-            yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+            yield return new WaitForSeconds(spawnDelay); // Flat delay of 3 seconds
         }
     }
 
@@ -62,11 +55,23 @@ public class FishEnemySpawner : MonoBehaviour
                 spawnedEnemies.RemoveAt(i);
                 continue;
             }
-        }
 
+            float distanceToPlayer = Vector2.Distance(spawnedEnemies[i].transform.position, player.position);
+            if (distanceToPlayer > despawnDistance)
+            {
+                Destroy(spawnedEnemies[i]);
+                spawnedEnemies.RemoveAt(i);
+                StartCoroutine(RespawnEnemyWithCooldown());
+            }
+        }
+    }
+
+    IEnumerator RespawnEnemyWithCooldown()
+    {
+        yield return new WaitForSeconds(1f); // Respawn cooldown of 1 second
         if (spawnedEnemies.Count < maxConcurrentEnemies)
         {
-            StartCoroutine(SpawnEnemy());
+            SpawnEnemy();
         }
     }
 }
