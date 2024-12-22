@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 4f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Transform playerVisual;
     public bool isSwimming = false;
+    private Player player;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerVisual = transform.Find("PlayerVisual");
         spriteRenderer = playerVisual.GetComponent<SpriteRenderer>();
+        player = GetComponent<Player>();
     }
 
     void Update()
@@ -28,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");   
 
         Vector2 movement = new Vector2(moveX, moveY).normalized;
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = movement * player.GetMoveSpeed();
 
         if (movement.magnitude > 0)
         {
