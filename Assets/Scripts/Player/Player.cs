@@ -131,8 +131,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        if (isDead) return;
-        isDead = true;
+
         Debug.Log("Hello");
         fishCount = 0;
         GameManager.Instance.LevelManager.LoadScene("Dead");
