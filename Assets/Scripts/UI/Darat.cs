@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Darat : MonoBehaviour
 {
-    public void Dive ()
+    public void Dive()
     {
-        SceneManager.LoadScene("Main");
+        // GameManager.Instance.LevelManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level1");
+        Debug.Log("Hello");
     }
+
 }
