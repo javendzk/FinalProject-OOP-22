@@ -32,9 +32,9 @@ public class Player : MonoBehaviour
     {
         oxygenComponent.UpdateOxygen();
         healthComponent.UpdateHealth();
-        if (healthComponent.currentHealth == 0)
+        if (healthComponent.currentHealth == 0 || oxygenComponent.currentOxygen == 0)
         {
-
+            Die();
         }
     }
 
@@ -123,6 +123,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-
+        fishCount = 0;
+        GameManager.Instance.LevelManager.LoadScene("Dead");
     }
 }
