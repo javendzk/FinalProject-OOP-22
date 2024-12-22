@@ -6,9 +6,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-    private Animator animator;
-
-    [SerializeField] private int maxHealth;
+    private Animator animator; 
+    
+    public HealthBar healthBar;
+    public OxygenBar oxygenBar;
+    public float maxHealth = 100; //jadi public
+    public float currentHealth;
+    public float maxOxygen = 100; //jadi public
+    public float currentOxygen;
+    public float oxygenDepletionRate = 1.0f;
     [SerializeField] private int fishCount;
     [SerializeField] private int moneyCount;
     [SerializeField] private float oxygenMultiplier;
@@ -22,11 +28,26 @@ public class Player : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         animator = transform.Find("PlayerVisual").GetComponent<Animator>();
+        currentHealth = maxHealth; //full hp at start
+        healthBar.SetMaxHealth(maxHealth);
+        currentOxygen = maxOxygen; //full oxygen at start
+        oxygenBar.SetMaxOxygen(maxOxygen);
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10.5f);
+        }
+
+        // Decrease currentOxygen over time
+    currentOxygen -= oxygenDepletionRate * Time.deltaTime;
+    if (currentOxygen < 0)
+    {
+        currentOxygen = 0;
+    }
+    oxygenBar.SetOxygen(currentOxygen);
     }
 
     void FixedUpdate()
@@ -77,7 +98,7 @@ public class Player : MonoBehaviour
         return baseTank * oxygenMultiplier;
     }
 
-    public int GetMaxHealth()
+    public float GetMaxHealth()
     {
         return maxHealth;
     }
@@ -90,5 +111,11 @@ public class Player : MonoBehaviour
     public float GetMoveSpeed()
     {
         return baseMoveSpeed * moveSpeedMultiplier;
+    }
+void TakeDamage (float damage) //demo take damage
+    {
+        currentHealth -= (int)damage;
+
+        healthBar.SetHealth(currentHealth);
     }
 }
