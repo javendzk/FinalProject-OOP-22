@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            foreach (Transform child in transform)
-            {
-                if (child.TryGetComponent(out Canvas canvas) || child.TryGetComponent(out Image image))
-                {
-                    child.gameObject.SetActive(false);
-                }
-            }
+            // foreach (Transform child in transform)
+            // {
+            //     if (child.TryGetComponent(out Canvas canvas) || child.TryGetComponent(out Image image))
+            //     {
+            //         child.gameObject.SetActive(false);
+            //     }
+            // }
 
             LevelManager = GetComponentInChildren<LevelManager>();
 
