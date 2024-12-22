@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     public float maxOxygen = 100; //jadi public
     public float currentOxygen;
     public float oxygenDepletionRate = 1.0f;
-    [SerializeField] private int fishCount;
-    [SerializeField] private int moneyCount;
+    public int fishCount; //public- in ya
+    public int moneyCount; //public- in ya
     [SerializeField] private float oxygenMultiplier;
     [SerializeField] private float moveSpeedMultiplier;
     [SerializeField] private float baseMoveSpeed;
