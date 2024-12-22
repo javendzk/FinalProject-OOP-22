@@ -55,7 +55,7 @@ public class menuController : MonoBehaviour
     }
     public void PlayGame()
     {
-
+        SceneManager.LoadSceneAsync("Land");
     }
 
     public void QuitGame()
