@@ -32,7 +32,8 @@ But beware—the trench is full of secrets and dangers!
 ## Art, Sound, and Sneak Peeks
 - **Sprites Sources**:
   - Underwater Diving Pack by Luis Zuno: [Check it out!](https://opengameart.org/content/underwater-diving-pack)
-  - Friendly Fishes Sprite by Dusty: [Check it out!](https://pixeljoint.com/pixelart/32784.htm)
+  - Friendly Fish Sprites by Dusty: [Check it out!](https://pixeljoint.com/pixelart/32784.htm)
+  - And other amazing sprite creators that we couldn't name one-by-one
 - **Soundtrack**:  
   - Start Menu: [Coconut Mall Theme 🎶](https://www.youtube.com/watch?v=cscuCIzItZQ). 
 
@@ -54,14 +55,8 @@ But beware—the trench is full of secrets and dangers!
 ---
 
 
-## Team Contributors & Progress
-- **Contributors**:
+## Team Contributors 
     - M. Arya Wiandra Utomo
     - Javana Dzaki Muhammad
     - Nugroho Ulil Abshar
     - Rivi Yasha Hafizhan 
-
-- **Development Updates**:
-    - [El Diver game dev progress #3](https://youtu.be/e1p9Xx7P0Bc)
-    - [El Diver game dev progress #2](https://youtu.be/e1p9Xx7P0Bc)
-    - [El Diver game dev progress #1](https://youtu.be/wzbC4wNzyj0)

@@ -14,6 +14,8 @@ public class menuController : MonoBehaviour
     void Start()
     {
         keyDown = false;
+
+        GameObject gameManagerObject = GameObject.FindWithTag("GameManager");
     }
 
     // Update is called once per frame
@@ -55,6 +57,12 @@ public class menuController : MonoBehaviour
     }
     public void PlayGame()
     {
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("GameManager instance is not found.");
+            return;
+        }
+
         GameManager.Instance.LevelManager.LoadScene("Level1");
     }
 

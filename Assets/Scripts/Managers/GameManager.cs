@@ -36,40 +36,25 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (player == null)
+        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Level3")
         {
-            player = GameObject.FindWithTag("Player");
-            if (player != null)
-            {
-                DontDestroyOnLoad(player);
-            }
-        }
-
-        GameObject sceneCamera = GameObject.FindWithTag("MainCamera");
-
-        if (scene.name == "level1" || scene.name == "level2" || scene.name == "level3")
-        {
-            if (sceneCamera != null && sceneCamera != mainCamera)
-            {
-                sceneCamera.SetActive(false);
-            }
-            if (mainCamera != null)
-            {
-                mainCamera.SetActive(true);
-                Debug.Log("adasad");
-            }
-        }
-        else
-        {
-            if (sceneCamera != null && sceneCamera != mainCamera)
-            {
-                sceneCamera.SetActive(true);
-            }
             if (mainCamera != null)
             {
                 mainCamera.SetActive(false);
             }
         }
+        else
+        {
+            if (mainCamera != null)
+            {
+                mainCamera.SetActive(true);
+            }
+        }
     }
+
+    // public void SetRespawnPosition(Vector3 position)
+    // {
+    //     respawnPosition = position;
+    // }
 }
 

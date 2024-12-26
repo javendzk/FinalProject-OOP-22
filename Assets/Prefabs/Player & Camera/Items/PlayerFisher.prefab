@@ -101,6 +101,7 @@ MonoBehaviour:
   FisherDefaultMaterial: {fileID: 2100000, guid: 5dafb3c6fd736b94db323a03709b3422, type: 2}
   FisherGreenMaterial: {fileID: 2100000, guid: 116c599299040e64cab8180fa98b8fc4, type: 2}
   scorePopupPrefab: {fileID: 6688478775980557799, guid: edee5d2e905f87349a1ed38e7300792f, type: 3}
+  player: {fileID: 0}
 --- !u!61 &979158083223593937
 BoxCollider2D:
   m_ObjectHideFlags: 0

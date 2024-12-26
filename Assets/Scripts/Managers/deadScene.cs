@@ -5,9 +5,9 @@ public class DeadScene : MonoBehaviour
 {
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            GameManager.Instance.LevelManager.LoadScene("land");
+            GameManager.Instance.LevelManager.LoadScene("StartMenu");
         }
     }
 }

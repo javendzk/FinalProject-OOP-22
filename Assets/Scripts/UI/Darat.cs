@@ -27,12 +27,12 @@ public class Darat : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            GameManager.Instance.LevelManager.LoadScene("Level2");
+            GameManager.Instance.LevelManager.LoadScene("Level1");
         }
     }
     public void Dive()
     {
-        GameManager.Instance.LevelManager.LoadScene("Level2");
+        GameManager.Instance.LevelManager.LoadScene("Level1");
         // SceneManager.LoadScene("Level1");
         Debug.Log("Hello");
     }

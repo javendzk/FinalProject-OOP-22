@@ -27,6 +27,7 @@ public class PlayerHealthComponent : HealthComponent
         if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
+            GameManager.Instance.LevelManager.LoadScene("Dead");
         }
         healthBar.SetHealth(currentHealth);
     }

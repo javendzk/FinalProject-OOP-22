@@ -30,6 +30,11 @@ public class InvincibilityComponent : MonoBehaviour
 
     private IEnumerator Blink()
     {
+        if (spriteRenderer == null)
+        {
+            yield break;
+        }
+
         for (int i = 0; i < blinkingCount; i++)
         {
             spriteRenderer.material = blinkMaterial;

@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (oxygenComponent != null && healthComponent != null)
+        if (oxygenComponent != null || healthComponent != null)
         {
             oxygenComponent.UpdateOxygen();
             healthComponent.UpdateHealth();
@@ -42,6 +42,12 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    private void Die()
+    {
+        fishCount = 0;
+        GameManager.Instance.LevelManager.LoadScene("Dead");
     }
 
     void LateUpdate()
@@ -66,6 +72,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 
     public void IncrementOxygenMultiplier()
     {
@@ -129,19 +136,5 @@ public class Player : MonoBehaviour
         
     }
 
-    private void Die()
-    {
-
-        Debug.Log("Hello");
-        fishCount = 0;
-        GameManager.Instance.LevelManager.LoadScene("Dead");
-    }
-
-    public void init()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-        animator = transform.Find("PlayerVisual").GetComponent<Animator>();
-        healthComponent = GetComponent<HealthComponent>();
-        oxygenComponent = GetComponent<OxygenComponent>();
-    }
+    
 }

@@ -20,6 +20,12 @@ public class menuButton : MonoBehaviour
 
     void Update()
     {
+        if (menuControllerReference == null)
+        {
+            Debug.LogError("menuControllerReference is not assigned.");
+            return;
+        }
+
         if (menuControllerReference.index == thisIndex)
         {
             animator.SetBool("selected", true);
